@@ -37,7 +37,7 @@ body {
 }
 
 .doc ._header {
-  padding-bottom: 5px;
+  height: 10vh;
 }
 
 .doc ._content[contentEditable] {
@@ -46,6 +46,8 @@ body {
   border-radius: 5px;
   border: 1px solid gray;
   max-width: 800px;
+  overflow-y: scroll;
+  height: 90vh;
 }
 
 .doc ._content[contentEditable] span {
