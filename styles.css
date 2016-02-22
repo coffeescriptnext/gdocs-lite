@@ -46,7 +46,10 @@ body {
   border-radius: 5px;
   border: 1px solid gray;
   max-width: 800px;
-  overflow-y: scroll;
+}
+
+.doc ._content[contentEditable] span {
+  font-size: 15px !important;
 }
 
 .doc ._content:focus {
