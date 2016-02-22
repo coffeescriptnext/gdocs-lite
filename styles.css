@@ -10,6 +10,14 @@ body {
   width: 20vw;
   min-width: 180px;
   padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu ._list {
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .menu ._list li {
@@ -29,13 +37,16 @@ body {
 }
 
 .doc ._header {
-  border-bottom: 2px solid darkgray;
   padding-bottom: 5px;
 }
 
-.doc ._content {
+.doc ._content[contentEditable] {
   flex-grow: 1;
   padding: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  max-width: 800px;
+  overflow-y: scroll;
 }
 
 .doc ._content:focus {

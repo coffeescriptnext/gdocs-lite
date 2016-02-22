@@ -1,6 +1,6 @@
 'use strict'
 
-var ref = new Firebase('https://frbsdocs.firebaseio.com');
+var ref = new Firebase('https://gdocslite.firebaseio.com');
 var docsRef = ref.child('docs');
 var selectedDocRef = null;
 var docNameElement = document.getElementById('doc-name');
@@ -36,15 +36,20 @@ function selectDoc(key) {
     selectedDocRef.off('value');
   }
 
+  var lastTypedTime = 0;
+
   selectedDocRef = docsRef.child(key);
   selectedDocRef.on('value', function(snap) {
-    docNameElement.innerText = snap.val().name;
-    docContentElement.innerHTML = snap.val().content;
+    var now = new Date().getTime();
+    if(now - lastTypedTime > 10) {
+      docNameElement.innerText = snap.val().name;
+      docContentElement.innerHTML = snap.val().content;
+    }
   });
 
   docContentElement.setAttribute('contenteditable', 'true');
-  docContentElement.onkeyup = function(event) {
-    event.preventDefault();
+  docContentElement.onkeyup = function() {
+    lastTypedTime = new Date().getTime();
     var content = docContentElement.innerHTML || docContentElement.innerText;
     selectedDocRef.child('content').set(content);
   }
